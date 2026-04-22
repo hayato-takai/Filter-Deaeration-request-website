@@ -218,7 +218,7 @@ window.SlideModules.push({
     downloadBtn.addEventListener('click', () => {
       const a    = document.createElement('a');
       a.href     = 'components/Hydac_Tank_Opti_Request_Form.xlsx';
-      a.download = 'components/Hydac_Tank_Opti_Request_Form.xlsx';
+      a.download = 'Hydac_Tank_Opti_Request_Form.xlsx';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
