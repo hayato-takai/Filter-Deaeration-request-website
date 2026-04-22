@@ -24,6 +24,7 @@
       --clr-text:         #e2e8f0;
       --clr-text-muted:   #7e93af;
       --nav-height:       80px;
+      --footer-height:    40px;
       --transition-dur:   380ms;
     }
 
@@ -85,7 +86,7 @@
     #slide-viewport {
       position: fixed;
       top: 56px;
-      bottom: var(--nav-height);
+      bottom: calc(var(--nav-height) + var(--footer-height));
       left: 0; right: 0;
       overflow: hidden;
     }
@@ -115,7 +116,7 @@
     /* ─── Bottom Navigation Bar ─────────────────────────────────────── */
     #nav-bar {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
+      bottom: var(--footer-height); left: 0; right: 0;
       height: var(--nav-height);
       background: var(--clr-surface);
       border-top: 1px solid var(--clr-border);
@@ -474,6 +475,35 @@
 
   <!-- ── App Controller ── -->
   <script src="js/app.js"></script>
+
+  <!-- ── Footer ── -->
+  <footer id="site-footer">
+    <p>The copyrights and industrial property rights to the content published here are reserved by HYDAC International GmbH.</p>
+    <p>hayato.takai@hydacusa.com</p>
+  </footer>
+
+  <style>
+    #site-footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: var(--footer-height);
+      background: var(--clr-surface);
+      border-top: 1px solid var(--clr-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      z-index: 100;
+    }
+
+    #site-footer p {
+      font-size: 0.65rem;
+      color: var(--clr-text-muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+  </style>
 
 </body>
 </html>
