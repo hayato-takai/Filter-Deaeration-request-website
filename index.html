@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hydraulic Filter Deaeration Analysis — Interactive Tutorial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* ─── CSS Variables ─────────────────────────────────────────────── */
+    :root {
+      --clr-bg:           #0a0a0a;
+      --clr-surface:      #0f1219;
+      --clr-surface-2:    #0d0e0f;
+      --clr-border:       #1e2d45;
+      --clr-primary:      #4485e7;
+      --clr-primary-glow: #0ea5e920;
+      --clr-secondary:    #10b981;
+      --clr-amber:        #f59e0b;
+      --clr-danger:       #ef4444;
+      --clr-text:         #e2e8f0;
+      --clr-text-muted:   #7e93af;
+      --nav-height:       80px;
+      --transition-dur:   380ms;
+    }
+
+    /* ─── Reset & Base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow: hidden;
+    }
+
+    /* ─── Top Header ────────────────────────────────────────────────── */
+    .app-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 100;
+    }
+
+    .app-header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: .05em;
+      color: var(--clr-primary);
+    }
+
+    .app-header .logo .logo-img {
+      height: 32px;
+      width: auto;
+    }
+
+    .app-header .badge {
+      font-family: monospace;
+      font-size: 0.7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+      background: var(--clr-surface-2);
+      border: 1px solid var(--clr-border);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ─── Slide Viewport ────────────────────────────────────────────── */
+    #slide-viewport {
+      position: fixed;
+      top: 56px;
+      bottom: var(--nav-height);
+      left: 0; right: 0;
+      overflow: hidden;
+    }
+
+    /* ─── Slide Container ───────────────────────────────────────────── */
+    .slide-container {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 40px 60px;
+      will-change: transform, opacity;
+    }
+
+    /* scrollbar styling */
+    .slide-container::-webkit-scrollbar { width: 6px; }
+    .slide-container::-webkit-scrollbar-track { background: transparent; }
+    .slide-container::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
+
+    /* ─── Transition Classes ────────────────────────────────────────── */
+    .slide-enter-right  { transform: translateX(100%); opacity: 0; }
+    .slide-enter-left   { transform: translateX(-100%); opacity: 0; }
+    .slide-active       { transform: translateX(0); opacity: 1; transition: transform var(--transition-dur) cubic-bezier(.4,0,.2,1), opacity var(--transition-dur) ease; }
+    .slide-exit-left    { transform: translateX(-100%); opacity: 0; transition: transform var(--transition-dur) cubic-bezier(.4,0,.2,1), opacity var(--transition-dur) ease; }
+    .slide-exit-right   { transform: translateX(100%); opacity: 0; transition: transform var(--transition-dur) cubic-bezier(.4,0,.2,1), opacity var(--transition-dur) ease; }
+
+    /* ─── Bottom Navigation Bar ─────────────────────────────────────── */
+    #nav-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      background: var(--clr-surface);
+      border-top: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 100;
+    }
+
+    /* Nav Buttons */
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--clr-surface-2);
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+      color: var(--clr-text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s, box-shadow .2s;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--clr-primary-glow);
+      border-color: var(--clr-primary);
+      color: var(--clr-primary);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .nav-btn.next { justify-content: flex-end; }
+    .nav-btn.prev { justify-content: flex-start; }
+
+    /* Progress dots */
+    #nav-dots {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--clr-border);
+      cursor: pointer;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      border: none;
+      padding: 0;
+    }
+
+    .nav-dot.active {
+      background: var(--clr-primary);
+      transform: scale(1.5);
+    }
+
+    .nav-dot:hover:not(.active) {
+      background: var(--clr-text-muted);
+    }
+
+    /* Slide counter */
+    #slide-counter {
+      font-family: monospace;
+      font-size: 0.75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .nav-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ─── Shared Slide Components ───────────────────────────────────── */
+
+    /* Slide wrapper */
+    .slide-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Section tag / pill label */
+    .section-tag {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clr-primary);
+      background: var(--clr-primary-glow);
+      border: 1px solid var(--clr-primary);
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    /* Slide title */
+    .slide-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .slide-title .accent {
+      color: var(--clr-primary);
+    }
+
+    /* Slide subtitle */
+    .slide-subtitle {
+      font-size: 1rem;
+      color: var(--clr-text-muted);
+      margin-bottom: 36px;
+      max-width: 700px;
+    }
+
+    /* Card panel */
+    .card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.4);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--clr-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Grid helpers */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* Stat number */
+    .stat-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--clr-primary);
+      line-height: 1;
+    }
+
+    /* Range slider */
+    .slider-wrap {
+      margin: 12px 0;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      margin-bottom: 6px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      background: var(--clr-border);
+      border-radius: 2px;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--clr-primary);
+      cursor: pointer;
+    }
+
+    /* Gauge bar */
+    .gauge-track {
+      width: 100%;
+      height: 12px;
+      background: var(--clr-surface-2);
+      border: 1px solid var(--clr-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .gauge-fill {
+      height: 100%;
+      border-radius: 6px;
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-secondary));
+      transition: width .4s ease;
+    }
+
+    /* Primary button */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--clr-primary);
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: box-shadow .2s, transform .15s;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Secondary button */
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: transparent;
+      color: var(--clr-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid var(--clr-primary);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s, box-shadow .2s;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: var(--clr-primary-glow);
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--clr-border);
+      margin: 28px 0;
+    }
+
+    /* Checkbox */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--clr-border);
+      background: var(--clr-surface);
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      margin-bottom: 10px;
+    }
+
+    .check-item:hover { border-color: var(--clr-primary); background: var(--clr-surface-2); }
+    .check-item.checked { border-color: var(--clr-secondary); background: #10b98110; }
+
+    .check-item input[type="checkbox"] { display: none; }
+
+    .check-box {
+      width: 20px; height: 20px;
+      min-width: 20px;
+      border: 2px solid var(--clr-border);
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      transition: background .2s, border-color .2s;
+      margin-top: 1px;
+    }
+
+    .check-item.checked .check-box {
+      background: var(--clr-secondary);
+      border-color: var(--clr-secondary);
+    }
+
+    .check-box::after {
+      content: '✓';
+      font-size: 12px;
+      color: #000;
+      display: none;
+      font-weight: 700;
+    }
+
+    .check-item.checked .check-box::after { display: block; }
+
+    /* ─── Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .slide-container { padding: 24px 20px; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      #nav-bar { padding: 0 16px; }
+      .nav-btn { min-width: 80px; padding: 10px 14px; font-size: 0.8rem; }
+      .app-header { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Top Header ── -->
+  <header class="app-header">
+    <div class="logo">
+      <img src="components/hydac-logo.svg" alt="HYDAC" class="logo-img" />
+      <span>Filter Deaeration Analysis</span>
+    </div>
+    <div class="badge">Simulation and Development</div>
+  </header>
+
+  <!-- ── Slide Viewport ── -->
+  <div id="slide-viewport">
+    <!-- slides are injected here by app.js -->
+  </div>
+
+  <!-- ── Bottom Navigation Bar ── -->
+  <nav id="nav-bar">
+    <button class="nav-btn prev" id="btn-prev" aria-label="Previous slide">
+      ← Previous
+    </button>
+
+    <div class="nav-center">
+      <div id="nav-dots" role="tablist" aria-label="Slide navigation"></div>
+      <div id="slide-counter">Slide 1 of 6</div>
+    </div>
+
+    <button class="nav-btn next" id="btn-next" aria-label="Next slide">
+      Next →
+    </button>
+  </nav>
+
+  <!-- ── Slide Modules (load before app.js) ── -->
+  <script src="js/slides/slide1.js"></script>
+  <script src="js/slides/slide2.js"></script>
+  <script src="js/slides/slide3.js"></script>
+  <script src="js/slides/slide4.js"></script>
+  <script src="js/slides/slide5.js"></script>
+  <script src="js/slides/slide6.js"></script>
+
+  <!-- ── App Controller ── -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
