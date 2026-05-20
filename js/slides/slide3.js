@@ -119,8 +119,8 @@ window.SlideModules.push({
       bullets: [
         'High-velocity zones flag where return and suction port fittings should be upsized to reduce momentum and turbulence.',
         'Quantifies splash risk at the oil surface — areas where the return jet reaches the free surface and directly entrains atmospheric air.',
-        'Dead zones and thermal pockets are identified: regions of low flow velocity where oil stagnates and degrades.',
-        'Cross-sectional velocity contours — longitudinal and transverse — reveal whether baffle or diffuser geometry needs adjustment.',
+        'Dead zones and thermal pockets are identified: regions unaccessible to the flow where oil stagnates does not aid in deaeration or heat dissipation.',
+        'High velocity areas do not allow air bubbles to float up and escape, reducing separation efficiency — these zones are highlighted for design iteration.',
         'Peak velocity values at each port inlet are extracted to directly inform HYDAC Air-X filter specification and sizing.',
         'Velocity field output feeds directly into bubble trajectory analysis: the flow field drives bubble transport.',
       ],
@@ -138,7 +138,7 @@ window.SlideModules.push({
       tag: 'CFD · Particle Tracking',
       color: '#10b981',
       bullets: [
-        'Tracks individual bubbles across a range of sizes,covering micro-bubble to coarse-bubble behaviour.',
+        'Injects and tracks a range of bubble sizes at the return, covering micro-bubble to coarse-bubble behaviour.',
         'Generates a separation efficiency curve per bubble size class, showing the percentage that escape to the free surface vs. are ingested at the suction.',
         'Quantifies worst-case air ingestion under peak flow conditions — the critical input for component damage risk assessment.',
         'Identifies the minimum separable bubble diameter: the threshold below which bubbles cannot reliably escape within the tank residence time.',
@@ -159,7 +159,6 @@ window.SlideModules.push({
       bullets: [
         'Return ports positioned above the oil surface are immediately flagged: they cause direct splash aeration at high flow rates, making aeration a concern before any deaeration is considered.',
         'Suction port depth is verified at worst-case tilt to prevent vortex formation and air ingestion — the most acute failure mode in mobile machines — with the angles derived from machine specifications.',
-        'A calculated tilt margin confirms adequate design clearance, providing the engineering data required for type-approval documentation.',
         'Vortex formation risk at the suction port inlet is assessed: shallow submergence combined with high flow velocity creates a vortex that ingests air even when the port is below the surface.',
         'Corrective geometry recommendations — port relocation, extended standpipes, or anti-vortex baffles — are provided with quantified improvement data.',
       ],
@@ -178,9 +177,9 @@ window.SlideModules.push({
       color: '#a855f7',
       bullets: [
         'Braking, acceleration, and cornering manoeuvres are each assessed independently and in combined worst-case scenarios representative of real operating conditions.',
-        'Breather vent fluid level is tracked throughout each manoeuvre to confirm oil cannot reach the breather to leak and contaminate the environment.',
-        'Suction port submergence is monitored continuously across the full manoeuvre — a momentary exposure of even 50 ms is sufficient to ingest a damaging air slug.',
-        'Baffle damping effectiveness is quantified: the simulation reveals whether surge waves are adequately attenuated by the current internal geometry or whether redesign is needed.',
+        'Breathers are tracked throughout each manoeuvre to confirm oil does not splash/leak and contaminate the environment.',
+        'Suction port submergence is monitored continuously across the full manoeuvre — even a momentary exposure is sufficient to ingest a damaging air slug.',
+        'Baffle damping effectiveness is quantified: the simulation reveals whether baffles are adequately attenuating surge waves or whether redesign is needed.',
         'Vehicle-specific measured acceleration and drive cycle data are used when supplied; recognised industry-standard profiles are applied when measured data is unavailable.',
       ],
       gradient: 'linear-gradient(200deg, #0a0d14 0%, #0c1040 35%, #1a0a3a 60%, #2d1060 80%, #a855f720 100%)',

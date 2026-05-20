@@ -39,7 +39,7 @@ window.SlideModules.push({
                 <p style="font-size:0.875rem; color:var(--clr-text-muted); line-height:1.7;">
                   The HYDAC Air-X filter is engineered specifically to address this problem: it slows and distributes
                   return flow before it enters the tank, converting a high-energy jet into a controlled, low-velocity
-                  sheet that promotes bubble rise without inducing splashing.
+                  cascade that promotes bubble rise without inducing splashing.
                 </p>
               </div>
               <div style="display:flex; flex-direction:column; gap:10px;">
@@ -70,7 +70,7 @@ window.SlideModules.push({
                 </p>
                 <p style="font-size:0.875rem; color:var(--clr-text-muted); line-height:1.7; margin-bottom:12px;">
                   Baffles can be a double edged sword: tanks encountering high sloshing scenarios can benefit from baffles to reduce sloshing. However, poorly
-                  positioned baffles can unlevel fluid distributions within the tank and increase splashing — which is exactly what CFD analysis reveals
+                  positioned baffles can unlevel fluid distributions within the tank and be a source of splashing — which is exactly what CFD analysis reveals
                   before fabrication begins.
                 </p>
                 <p style="font-size:0.875rem; color:var(--clr-text-muted); line-height:1.7;">
@@ -83,8 +83,8 @@ window.SlideModules.push({
 
                 <div style="padding:14px; background:var(--clr-surface-2); border-radius:8px; border:1px solid var(--clr-border);">
                   <div style="font-family:monospace; font-size:0.65rem; letter-spacing:.08em; text-transform:uppercase; color:var(--clr-amber); margin-bottom:4px;">Optimisation Goal</div>
-                  <div style="font-size:1.3rem; font-weight:800; color:var(--clr-text);">Min. volume</div>
-                  <div style="font-size:0.75rem; color:var(--clr-text-muted);">At worst case scenario</div>
+                  <div style="font-size:1.3rem; font-weight:800; color:var(--clr-text);">Remove Inefficient Volume</div>
+                  <div style="font-size:0.75rem; color:var(--clr-text-muted);">At Worst Case Scenario</div>
                 </div>
               </div>
             </div>
@@ -96,18 +96,16 @@ window.SlideModules.push({
               <div>
                 <div class="card-title" style="color:var(--clr-primary);"><i data-lucide="timer" style="width:16px;height:16px;vertical-align:-3px;stroke-width:2;"></i> Flow Rate &amp; Residence Time</div>
                 <p style="font-size:0.875rem; color:var(--clr-text-muted); line-height:1.7; margin-bottom:12px;">
-                  Residence time is the average duration a fluid parcel spends in the tank before reaching the
-                  suction port. It is fundamentally set by the ratio of tank volume to flow rate — a large tank
-                  at low flow gives long residence time; a small tank at high flow gives very short residence time.
+                  Residence time is the average duration an air bubble spends in the tank before reaching the
+                  suction port. It is fundamentally set by the fluid velocity and the filter to suction distance.
                 </p>
                 <p style="font-size:0.875rem; color:var(--clr-text-muted); line-height:1.7; margin-bottom:12px;">
-                  Longer residence time provides more opportunity for bubbles to rise to the surface. Critically,
+                  Longer residence time at a slow velocity provides more opportunity for bubbles to rise to the surface. Critically,
                   the required residence time depends on the bubble size of concern: large bubbles rise quickly
-                  and separate even at moderate times; small micro-bubbles require significantly more time or
-                  specialised separation hardware.
+                  and separate even at moderate times; small micro-bubbles require significantly more time and filters specifically designed to coalesce them. .
                 </p>
                 <p style="font-size:0.875rem; color:var(--clr-text-muted); line-height:1.7;">
-                  The relationship between flow rate, volume, and efficiency is non-linear — which is why simulation
+                  The relationship between tank shape, fluid velocity, and efficiency is complex — which is why simulation
                   is essential. Machines that operate across wide flow ranges need a full analysis at each duty
                   point to confirm the design is adequate at all operating conditions.
                 </p>

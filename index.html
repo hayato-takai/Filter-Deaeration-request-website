@@ -12,17 +12,18 @@
   <style>
     /* ─── CSS Variables ─────────────────────────────────────────────── */
     :root {
-      --clr-bg:           #0a0a0a;
-      --clr-surface:      #0f1219;
-      --clr-surface-2:    #0d0e0f;
+      --clr-bg:           #F8F9FA;
+      --clr-surface:      #F8F9FA;
+      --clr-surface-2:    #F8F9FA;
       --clr-border:       #1e2d45;
+      --clr-border-muted: rgba(30, 45, 69, 0.2);
       --clr-primary:      #4485e7;
       --clr-primary-glow: #0ea5e920;
       --clr-secondary:    #10b981;
       --clr-amber:        #f59e0b;
       --clr-danger:       #ef4444;
-      --clr-text:         #e2e8f0;
-      --clr-text-muted:   #7e93af;
+      --clr-text:         #000000;
+      --clr-text-muted:   #000000;
       --nav-height:       80px;
       --footer-height:    40px;
       --transition-dur:   380ms;
@@ -46,13 +47,18 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: 56px;
-      background: var(--clr-surface);
-      border-bottom: 1px solid var(--clr-border);
+      background: rgba(248, 249, 250, 0.5);
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      box-shadow: 0 4px 24px rgba(0,0,0,.2);
+      border-bottom: 1px solid rgba(30, 45, 69, 0.35);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 32px;
       z-index: 100;
+
+
     }
 
     .app-header .logo {
@@ -85,8 +91,8 @@
     /* ─── Slide Viewport ────────────────────────────────────────────── */
     #slide-viewport {
       position: fixed;
-      top: 56px;
-      bottom: calc(var(--nav-height) + var(--footer-height));
+      top: 0;
+      bottom: 0;
       left: 0; right: 0;
       overflow: hidden;
     }
@@ -97,7 +103,7 @@
       inset: 0;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 40px 60px;
+      padding: calc(56px + 40px) 60px calc(var(--nav-height) + var(--footer-height) + 40px);
       will-change: transform, opacity;
     }
 
@@ -119,6 +125,10 @@
       bottom: var(--footer-height); left: 0; right: 0;
       height: var(--nav-height);
       background: var(--clr-surface);
+      background: rgba(248, 249, 250, 0.5);
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      box-shadow: 0 4px 24px rgba(0,0,0,.2);
       border-top: 1px solid var(--clr-border);
       display: flex;
       align-items: center;
@@ -469,7 +479,6 @@
   <script src="js/slides/slide1.js"></script>
   <script src="js/slides/slide2.js"></script>
   <script src="js/slides/slide3.js"></script>
-  <script src="js/slides/slide4.js"></script>
   <script src="js/slides/slide5.js"></script>
   <script src="js/slides/slide6.js"></script>
 
@@ -487,14 +496,18 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       height: var(--footer-height);
-      background: var(--clr-surface);
-      border-top: 1px solid var(--clr-border);
+      background: rgba(248, 249, 250, 0.5);
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      border-top: 1px solid rgba(30, 45, 69, 0.35);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 1px;
       z-index: 100;
+      box-shadow: 0 4px 24px rgba(0,0,0,.2);
+
     }
 
     #site-footer p {

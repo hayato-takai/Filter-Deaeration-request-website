@@ -8,39 +8,7 @@ window.SlideModules = window.SlideModules || [];
 
 window.SlideModules.push({
   title: 'Get Started',
-
-  /** Same CSV as slide5 — reused for the download CTA */
-  _csvContent: [
-    'HYDAC Tank Deaeration Analysis — Submission Template',
-    'Generated: ' + new Date().toISOString().split('T')[0],
-    '',
-    'Section,Field,Value,Notes',
-    'Project Info,Customer Name,,',
-    'Project Info,Project Reference,,',
-    'Project Info,Submission Date,,',
-    'Project Info,HYDAC Contact,,',
-    '',
-    'Tank Geometry,Tank Internal Volume (L),,',
-    'Tank Geometry,Tank Length (mm),,',
-    'Tank Geometry,Tank Width (mm),,',
-    'Tank Geometry,Tank Height (mm),,',
-    '',
-    'Port Details,Return Port Count,,',
-    'Port Details,Return Port Diameter(s) (mm),,',
-    'Port Details,Suction Port Diameter(s) (mm),,',
-    'Port Details,Suction Port Depth Below Surface (mm),,',
-    '',
-    'Operating Conditions,Nominal Flow Rate (L/min),,',
-    'Operating Conditions,Maximum Flow Rate (L/min),,',
-    'Operating Conditions,Oil Type / Grade,,',
-    '',
-    'Supplied Files,Tank Opti Sheet (Excel),,Mandatory',
-    'Supplied Files,Port Diagram,,Mandatory',
-    'Supplied Files,CAD Model (STEP/IGES),,Mandatory',
-    'Supplied Files,SpaceClaim / Photos,,Recommended',
-    'Supplied Files,Acceleration / Drive Cycle Data,,Required for sloshing',
-  ].join('\n'),
-
+  
   getHTML() {
     return /* html */`
       <div class="slide-inner" style="text-align:center; padding-top:20px;">
@@ -124,23 +92,6 @@ window.SlideModules.push({
           </div>
         </div>
 
-        <!-- Restart link -->
-        <div>
-          <button id="s6-restart" style="
-            background:none; border:none; color:var(--clr-text-muted);
-            font-family:'Inter',sans-serif; font-size:0.875rem; cursor:pointer;
-            text-decoration:underline; text-underline-offset:3px;
-            transition:color .2s;">
-            ↩ Restart Slideshow
-          </button>
-        </div>
-
-        <!-- Confetti canvas (hidden, shown on CTA click) -->
-        <canvas id="s6-confetti" style="
-          position:fixed; inset:0; pointer-events:none;
-          z-index:9999; display:none;
-        "></canvas>
-
         <style>
         </style>
       </div>
@@ -167,17 +118,14 @@ window.SlideModules.push({
 
     downloadBtn.addEventListener('click', () => {
       const a    = document.createElement('a');
-      a.href     = 'components/Hydac_Tank_Opti_Request_Form.xlsx';
-      a.download = 'Hydac_Tank_Opti_Request_Form.xlsx';
+      a.href     = 'components/F-0262_03_Hydac_Tank_Opti_Request_Form.xlsx';
+      a.download = 'F-0262_03_Hydac_Tank_Opti_Request_Form.xlsx';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
     });
 
-    /* ── Restart button ─────────────────────────────────────────── */
-    el.querySelector('#s6-restart').addEventListener('click', () => {
-      if (window.AppController) window.AppController.restart();
-    });
+
 
   }
 });
