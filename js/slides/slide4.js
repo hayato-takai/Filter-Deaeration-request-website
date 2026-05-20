@@ -1,5 +1,5 @@
 /**
- * slide6.js — Get Started
+ * slide4.js — Get Started
  * Interactive element: staggered fade-in for takeaway cards on load,
  * radial glow pulse on CTA button hover, and confetti burst on primary CTA click.
  */
@@ -14,7 +14,7 @@ window.SlideModules.push({
       <div class="slide-inner" style="text-align:center; padding-top:20px;">
 
         <!-- Section tag -->
-        <div class="section-tag" style="display:inline-block;">Module 06 — Get Started</div>
+        <div class="section-tag" style="display:inline-block;">Module 04 — Get Started</div>
 
         <!-- Hero headline -->
         <h1 class="slide-title" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:16px;">
