@@ -45,6 +45,33 @@ window.SlideModules.push({
           </div>
         </div>
 
+        <!-- ── Filter Technology Carousel ────────────────────────────── -->
+        <div style="margin-top:56px;">
+          <div class="section-tag">Filter Technology</div>
+          <h2 style="font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:600;margin:12px 0 8px;color:var(--clr-text);">
+            The <span class="accent">Air-X</span> Filter Family
+          </h2>
+          <p class="slide-subtitle" style="margin-bottom:24px;">
+            Two mounting orientations and two size classes — each matched to a specific installation envelope and flow range.
+          </p>
+          <div id="ft-tabs" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
+            <button class="s2-tab s2-tab-active" data-ft-idx="0">
+              <span class="s2-tab-icon"><i data-lucide="layout-grid" style="width:14px;height:14px;vertical-align:-2px;stroke-width:2;"></i></span> Product Lineup
+            </button>
+            <button class="s2-tab" data-ft-idx="1">
+              <span class="s2-tab-icon"><i data-lucide="filter" style="width:14px;height:14px;vertical-align:-2px;stroke-width:2;"></i></span> Coalescence Screen
+            </button>
+          </div>
+          <div id="ft-card" class="card" style="padding:0;overflow:hidden;">
+            <div id="ft-image-panel" style="position:relative;overflow:hidden;background:var(--clr-surface-2);padding:24px 32px;">
+              <!-- injected by JS -->
+            </div>
+            <div id="ft-desc-panel" style="padding:24px;border-top:2px solid var(--clr-primary);transition:border-top-color .3s;">
+              <!-- injected by JS -->
+            </div>
+          </div>
+        </div>
+
         <style>
           .s2-tab {
             display: flex; align-items: center; gap: 8px;
@@ -184,6 +211,31 @@ window.SlideModules.push({
     </ul>`,
   ],
 
+  _ftDescContent: [
+    // Panel 0 — Product Lineup
+    `<div class="card-title" style="color:var(--clr-primary);margin-bottom:8px;">
+      <i data-lucide="layout-grid" style="width:16px;height:16px;vertical-align:-3px;stroke-width:2;"></i> Air-X Product Lineup
+    </div>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin:0;padding:0;">
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:var(--clr-primary);font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>The RFB series mounts below the tank with the return connection at the bottom — ideal for space-constrained installations where the filter body sits beneath or beside the reservoir.</li>
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:var(--clr-primary);font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>The RFB can be paired with a dirt box to consolidate multiple return lines into a single filter inlet — eliminating the need for a heavy and expensive manifold block while maintaining full deaeration performance.</li>
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:var(--clr-primary);font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>The RFT series connects above the tank, with the return line entering from the top — preferred when overhead access is available and easy serviceability is a priority.</li>
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:var(--clr-primary);font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>Compact variants (RFB Compact, RFT Compact) cover small to medium flow rates, while the full-size RFB and RFT models address medium to large flow requirements.</li>
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:var(--clr-primary);font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>All variants integrate the Air-X coalescence screen and diffuser assembly, delivering consistent deaeration performance regardless of mounting orientation or installation class.</li>
+    </ul>`,
+
+    // Panel 1 — Coalescence Screen
+    `<div class="card-title" style="color:#10b981;margin-bottom:8px;">
+      <i data-lucide="filter" style="width:16px;height:16px;vertical-align:-3px;stroke-width:2;"></i> Coalescence Screen Technology
+    </div>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin:0;padding:0;">
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:#10b981;font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>The coalescence screen captures dispersed micro-bubbles that are too small to rise under buoyancy alone, forcing them into contact with each other and the screen surface where they merge into larger, faster-rising bubbles.</li>
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:#10b981;font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>By increasing effective bubble diameter, the required residence time for separation is dramatically reduced — enabling reliable air removal even in compact tanks with limited dwell volume.</li>
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:#10b981;font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>The screen is designed for minimal pressure drop across the full rated flow range, ensuring deaeration performance is not traded against system efficiency or heat dissipation.</li>
+      <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.875rem;color:var(--clr-text-muted);line-height:1.55;"><span style="color:#10b981;font-size:0.8rem;margin-top:2px;flex-shrink:0;">▸</span>The animation above shows return flow being diffused through the coalescence screen media — micro-bubbles are captured, forced into contact, and merged into larger bubbles that rise rapidly to the fluid surface.</li>
+    </ul>`,
+  ],
+
   init(el) {
     const panels = this._panels;
     const descContent = this._descContent;
@@ -304,5 +356,59 @@ window.SlideModules.push({
 
     tabs.forEach((tab, i) => tab.addEventListener('click', () => selectPanel(i)));
     selectPanel(0);
+
+    // ── Filter Technology Carousel ─────────────────────────────────
+    const ftDescContent = this._ftDescContent;
+    const ftProducts = [
+      { badge: 'Compact \u2013 Return from Bottom', img: 'components/RFB210_render.png', name: 'RFB Compact', desc: 'Small to medium flowrate' },
+      { badge: 'Return from Bottom',                img: 'components/RFB300_render.png', name: 'RFB',         desc: 'Medium to large flowrate' },
+      { badge: 'Compact \u2013 Return from Top',    img: 'components/RFT210_render.png', name: 'RFT Compact', desc: 'Small to medium flowrate' },
+      { badge: 'Return from Top',                   img: 'components/RFT400_render.png', name: 'RFT',         desc: 'Medium to large flowrate' },
+    ];
+    const ftTabs    = el.querySelectorAll('[data-ft-idx]');
+    const ftImageEl = el.querySelector('#ft-image-panel');
+    const ftDescEl  = el.querySelector('#ft-desc-panel');
+    const ftCard    = el.querySelector('#ft-card');
+
+    function renderFTPanel(idx) {
+      const colors = ['var(--clr-primary)', '#10b981'];
+      const color  = colors[idx] || 'var(--clr-primary)';
+      ftCard.style.borderColor      = color;
+      ftDescEl.style.borderTopColor = color;
+
+      if (idx === 0) {
+        ftImageEl.innerHTML = `
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+            ${ftProducts.map(p => `
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;">
+                <span style="font-size:0.7rem;color:var(--clr-text-muted);line-height:1.3;">${p.badge}</span>
+                <div style="width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;">
+                  <img src="${p.img}" alt="${p.name}" style="max-height:100%;max-width:100%;object-fit:contain;" />
+                </div>
+                <span style="font-size:0.875rem;font-weight:500;color:var(--clr-text);">${p.name}</span>
+                <span style="font-size:0.75rem;color:var(--clr-text-muted);">${p.desc}</span>
+              </div>
+            `).join('')}
+          </div>`;
+      } else {
+        ftImageEl.innerHTML = `
+          <video
+            src="https://pub-fa810e0d43204e26baa3ea906dc3c529.r2.dev/coalesce.mp4"
+            autoplay loop muted playsinline
+            style="width:100%;height:100%;object-fit:contain;display:block;border-radius:4px;">
+          </video>`;
+      }
+
+      ftDescEl.innerHTML = ftDescContent[idx];
+      if (window.lucide) lucide.createIcons({ node: ftDescEl });
+    }
+
+    function selectFTPanel(idx) {
+      ftTabs.forEach((t, i) => t.classList.toggle('s2-tab-active', i === idx));
+      renderFTPanel(idx);
+    }
+
+    ftTabs.forEach(tab => tab.addEventListener('click', () => selectFTPanel(+tab.dataset.ftIdx)));
+    selectFTPanel(0);
   }
 });
