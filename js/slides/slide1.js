@@ -275,16 +275,29 @@ window.SlideModules.push({
           </div>
         </div>
 
-        <div class="card" style="background:var(--clr-surface-2); border-color:var(--clr-primary); display:flex; gap:20px; align-items:center;">
-          <div style="min-width:48px; text-align:center; color:var(--clr-primary);"><i data-lucide="heart" style="width:32px;height:32px;stroke-width:1.5;"></i></div>
-          <div>
-            <div style="font-weight:700; color:var(--clr-primary); margin-bottom:4px;">The Fluid Architecture is the Heart of the Machine</div>
-            <p style="font-size:0.875rem; color:var(--clr-text-muted);">
-              The filter-tank assembly is the heart of the hydraulic system. If it fails to deaerate,
-              every downstream component — pumps, actuators, valves — is placed at risk. A
-              simulation-based analysis quantifies this risk and eliminates it before a single prototype
-              is built.
-            </p>
+        <div class="card" style="background:var(--clr-surface-2); border-color:var(--clr-primary); display:flex; flex-direction:column; gap:20px;">
+          <div style="display:flex; gap:20px; align-items:center;">
+            <div style="min-width:48px; text-align:center; color:var(--clr-primary);"><i data-lucide="heart" style="width:32px;height:32px;stroke-width:1.5;"></i></div>
+            <div>
+              <div style="font-weight:700; color:var(--clr-primary); margin-bottom:4px;">The Fluid Architecture is the Heart of the Machine</div>
+              <p style="font-size:0.875rem; color:var(--clr-text-muted);">
+                The filter-tank assembly is the heart of the hydraulic system. If it fails to deaerate,
+                every downstream component — pumps, actuators, valves — is placed at risk. A
+                simulation-based analysis quantifies this risk and eliminates it before a single prototype
+                is built.
+              </p>
+            </div>
+          </div>
+          <div style="position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:6px;">
+            <iframe
+              src="https://www.youtube.com/embed/29wd8FHuMuo"
+              title="Filtration / Deaeration: Air, the &quot;Silent Killer&quot;"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:6px;">
+            </iframe>
           </div>
         </div>
 
