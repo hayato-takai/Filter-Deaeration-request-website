@@ -239,7 +239,7 @@ window.SlideModules.push({
   init(el) {
     const panels = this._panels;
     const descContent = this._descContent;
-    const tabs = el.querySelectorAll('.s2-tab');
+    const tabs = el.querySelectorAll('[data-idx]');
     const imageEl = el.querySelector('#s2-image-panel');
     const descEl = el.querySelector('#s2-desc-panel');
     const card = el.querySelector('#s2-card');
