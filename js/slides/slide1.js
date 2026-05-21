@@ -288,17 +288,7 @@ window.SlideModules.push({
               </p>
             </div>
           </div>
-          <div style="position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:6px;">
-            <iframe
-              src="https://www.youtube.com/embed/29wd8FHuMuo"
-              title="Filtration / Deaeration: Air, the &quot;Silent Killer&quot;"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-              style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:6px;">
-            </iframe>
-          </div>
+          <div id="s1-yt-wrap" style="position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:6px;"></div>
         </div>
 
       </div>
@@ -306,6 +296,17 @@ window.SlideModules.push({
   },
 
   init(el) {
-    // No interactive elements on this slide.
+    const wrap = el.querySelector('#s1-yt-wrap');
+    if (wrap) {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/29wd8FHuMuo';
+      iframe.title = 'Filtration / Deaeration: Air, the \u201cSilent Killer\u201d';
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:6px;';
+      wrap.appendChild(iframe);
+    }
   }
 });
