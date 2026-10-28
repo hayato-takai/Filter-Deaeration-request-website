@@ -79,7 +79,7 @@ window.SlideModules.push({
 
         <!-- CTA buttons row -->
         <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
-          <button id="s6-download" class="btn-primary">
+          <button id="s6-download" class="btn-primary" style="color:#fff;">
                         <i data-lucide="download" style="width:15px;height:15px;vertical-align:-2px;stroke-width:2;"></i> Download Request Form
           </button>
           <a href="https://www.hydac.com/en-us/contact-finder/" class="btn-secondary">
