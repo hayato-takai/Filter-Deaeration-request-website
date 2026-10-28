@@ -29,6 +29,13 @@
 
   const total = slides.length;
 
+  /* ── URL hash → slide index (#page4 → 3; missing/invalid → 0) ───────── */
+  function indexFromHash() {
+    const match = /^#page(\d+)$/.exec(location.hash);
+    const index = match ? parseInt(match[1], 10) - 1 : 0;
+    return (index >= 0 && index < total) ? index : 0;
+  }
+
   /* ── Build dot indicators ───────────────────────────────────────────── */
   function buildDots() {
     dotsWrap.innerHTML = '';
@@ -75,6 +82,9 @@
 
     isAnimating = true;
 
+    // Reflect the target slide in the URL (adds a browser history entry)
+    if (indexFromHash() !== targetIndex) location.hash = 'page' + (targetIndex + 1);
+
     const direction  = targetIndex > currentIndex ? 'forward' : 'backward';
     const oldEl      = viewport.querySelector('.slide-container');
     const newModule  = slides[targetIndex];
@@ -111,6 +121,9 @@
       if (window.lucide) lucide.createIcons();
 
       isAnimating = false;
+
+      // Catch up if the URL changed mid-transition (e.g. Back pressed)
+      if (indexFromHash() !== currentIndex) goTo(indexFromHash());
     }, TRANSITION_DURATION + 20);
   }
 
@@ -124,19 +137,24 @@
     if (e.key === 'ArrowLeft')  goTo(currentIndex - 1);
   });
 
+  /* ── URL hash navigation (Back/Forward buttons, edited URL) ─────────── */
+  window.addEventListener('hashchange', () => goTo(indexFromHash()));
+
   /* ── Initial render ─────────────────────────────────────────────────── */
   function init() {
     buildDots();
 
-    // Render first slide directly (no transition)
-    const firstEl = createSlideEl(slides[0]);
+    // Render the slide named in the URL (e.g. #page4), else the first, directly (no transition)
+    currentIndex = indexFromHash();
+    const firstModule = slides[currentIndex];
+    const firstEl = createSlideEl(firstModule);
     firstEl.classList.add('slide-active');
     viewport.appendChild(firstEl);
 
-    updateUI(0);
+    updateUI(currentIndex);
 
-    if (typeof slides[0].init === 'function') {
-      slides[0].init(firstEl);
+    if (typeof firstModule.init === 'function') {
+      firstModule.init(firstEl);
     }
     if (window.lucide) lucide.createIcons();
   }
