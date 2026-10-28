@@ -96,7 +96,7 @@ window.SlideModules.push({
               Download the submission template to begin collecting the required information
               before contacting the HYDAC engineering team.
               </p>
-              <button id="s5-download" class="btn-primary" style="width:100%; justify-content:center;">
+              <button id="s5-download" class="btn-primary" style="width:100%; justify-content:center; color:#fff;">
                                 <i data-lucide="download" style="width:18px;height:18px;flex-shrink:0;vertical-align:-2px;stroke-width:2;"></i> Download Tank-Opti Request Form
               </button>
             </div>
