@@ -1,0 +1,5 @@
+/* Site overrides for the deaeration animation on slide 3 of the Filter Deaeration request website.
+   tools/import-animation.js appends this to the generated page. */
+
+/* Match the site's .card: page background, 1px navy border, 12px radius, no shadow. */
+.stage{background:var(--page);border:1px solid var(--navy);border-radius:12px;box-shadow:none}
